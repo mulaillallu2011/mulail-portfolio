@@ -363,6 +363,43 @@ export default function Portfolio() {
   const [menu, setMenu] = useState(false);
   const [active, setActive] = useState("home");
   const [filter, setFilter] = useState("All");
+  const [search, setSearch] = useState("");
+  const [theme, setTheme] = useState("dark");
+  const [shareStatus, setShareStatus] = useState("");
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("mulail-theme");
+      if (saved === "light") { setTheme(saved); document.documentElement.dataset.theme = saved; }
+    } catch { /* Storage may be disabled. */ }
+    const syncProject = () => {
+      const id = new URL(window.location.href).searchParams.get("project");
+      setProject(projects.find(p => p.id === id) ?? null);
+      setShareStatus("");
+    };
+    syncProject();
+    window.addEventListener("popstate", syncProject);
+    return () => window.removeEventListener("popstate", syncProject);
+  }, []);
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem("mulail-theme", next); } catch { /* Keep session preference. */ }
+  };
+  const visibleProjects = projects.filter(p =>
+    (filter === "All" || p.category === filter) &&
+    `${p.title} ${p.description} ${p.tech.join(" ")}`.toLowerCase().includes(search.trim().toLowerCase())
+  );
+  const openProject = (p: Project) => {
+    setProject(p); setShareStatus("");
+    const url = new URL(window.location.href);
+    url.searchParams.set("project", p.id);
+    window.history.pushState(null, "", url);
+  };
+  const shareProject = async () => {
+    try { await navigator.clipboard.writeText(window.location.href); setShareStatus("Project link copied"); }
+    catch { setShareStatus("Copy the link from your browser’s address bar"); }
+  };
   const [role, setRole] = useState(0);
   const [project, setProject] = useState<Project | null>(null);
   const [photo, setPhoto] = useState<number | null>(null);
@@ -403,6 +440,11 @@ export default function Portfolio() {
   const close = () => {
     setProject(null);
     setPhoto(null);
+    const url = new URL(window.location.href);
+    if (url.searchParams.has("project")) {
+      url.searchParams.delete("project");
+      window.history.replaceState(null, "", url);
+    }
   };
 
   return (
@@ -431,6 +473,9 @@ export default function Portfolio() {
             </a>
           ))}
         </nav>
+        <button className="theme-toggle" onClick={toggleTheme} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}>
+          {theme === "dark" ? "☀ Light" : "☾ Dark"}
+        </button>
         <a className="nav-contact" href={profile.email}>
           Let’s connect <ArrowUpRight size={15} />
         </a>
@@ -670,6 +715,11 @@ export default function Portfolio() {
               <Github size={18} /> Explore my GitHub <ArrowUpRight size={16} />
             </a>
           </div>
+          <div className="project-search">
+            <label htmlFor="project-search">Find a project</label>
+            <input id="project-search" type="search" placeholder="Search projects or technology…" value={search} onChange={e => setSearch(e.target.value)} />
+            <span role="status">{visibleProjects.length} {visibleProjects.length === 1 ? "project" : "projects"}</span>
+          </div>
           <div className="filters" aria-label="Filter projects">
             {["All", "Robotics", "IoT", "Web", "Electronics", "Concept"].map(
               (f) => (
@@ -685,8 +735,7 @@ export default function Portfolio() {
             )}
           </div>
           <div className="project-grid">
-            {projects
-              .filter((p) => filter === "All" || p.category === filter)
+            {visibleProjects
               .map((p) => (
                 <article
                   className={`project-card ${p.id === "01" && filter === "All" ? "featured" : ""}`}
@@ -694,7 +743,7 @@ export default function Portfolio() {
                 >
                   <button
                     className="project-image"
-                    onClick={() => setProject(p)}
+                    onClick={() => openProject(p)}
                     aria-label={`View details: ${p.title}`}
                   >
                     <ProjectArt project={p} />
@@ -733,13 +782,14 @@ export default function Portfolio() {
                         <span key={t}>{t}</span>
                       ))}
                     </div>
-                    <button className="text-link" onClick={() => setProject(p)}>
+                    <button className="text-link" onClick={() => openProject(p)}>
                       View project details <ArrowUpRight size={16} />
                     </button>
                   </div>
                 </article>
               ))}
           </div>
+          {visibleProjects.length === 0 && <div className="empty-projects"><p>No projects match. Try another technology or category.</p><button className="button secondary" onClick={() => { setSearch(""); setFilter("All"); }}>Reset filters</button></div>}
         </section>
         <section id="skills" className="section skills">
           <SectionTitle
@@ -940,6 +990,7 @@ export default function Portfolio() {
               </p>
               <h2 id="dialog-title">{project.title}</h2>
               <p>{project.detail}</p>
+              <div className="guide-actions"><button className="button secondary" onClick={shareProject}>Copy project link</button><span role="status">{shareStatus}</span></div>
               <ProjectGuide key={project.id} id={project.id} />
               {project.award && (
                 <p className="project-award">

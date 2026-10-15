@@ -1906,3 +1906,24 @@ dialog::backdrop {
 .guide-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .project-guide summary { cursor: pointer; padding: 16px 0; color: var(--cyan); }
 .project-guide pre { max-height: 400px; overflow: auto; padding: 18px; background: #050a14; border: 1px solid var(--line); border-radius: 10px; font-size: 12px; line-height: 1.6; }
+
+/* Visitor preferences and project discovery */
+.theme-toggle { border: 1px solid var(--line); border-radius: 999px; background: var(--panel); padding: 8px 13px; white-space: nowrap; font-size: 12px; }
+.project-search { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin: 28px 0 20px; }
+.project-search label { font-weight: 600; }
+.project-search input { flex: 1; min-width: 180px; max-width: 490px; padding: 12px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); color: inherit; font: inherit; }
+.project-search input:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+.project-search input::placeholder { color: var(--muted); }
+.project-search [role=status] { color: var(--muted); font-size: 13px; }
+.empty-projects { padding: 40px; border: 1px dashed var(--line); border-radius: 16px; text-align: center; }
+.empty-projects button { margin-top: 18px; }
+:root[data-theme=light] { --bg: #f5f8fc; --panel: #fff; --cyan: #00748a; --silver: #33465a; --muted: #52657b; --line: #cdd7e2; color-scheme: light; }
+[data-theme=light] body { color: #14263b; }
+[data-theme=light] .nav-shell { background: #f5f8fcf2; }
+[data-theme=light] :is(.project-card, .award-card, .skill-group, dialog, .certificate-grid button, .gallery-item, .tech-tags span, .theme-toggle) { background: #fff; color: #14263b; }
+[data-theme=light] :is(.discipline-strip, .button.secondary, .dialog-close, .lightbox-controls button) { background: #e8eff6; color: #203c54; }
+[data-theme=light] :is(.hero-statement, .hero-statement em, .role-line, .hero-bottom, .hero-foot, .about-body p, .about-manifesto, .award-card p, .award-card h4, .project-info p, .project-meta, .tech-tags span, .timeline strong, .timeline p, .contact p, .email-link, footer, .dialog-inner > p, .section-top > p, nav a, nav a.active) { color: #33465a; }
+[data-theme=light] .button.primary, [data-theme=light] .nav-contact { color: #fff; }
+[data-theme=light] .project-guide pre { background: #eef3f9; color: #14263b; }
+[data-theme=light] .gallery-item > span { background: #ffffffed; color: #14263b; }
+@media (max-width: 760px) { .theme-toggle { margin-left: auto; } .project-search { gap: 10px; } .project-search label { width: 100%; } [data-theme=light] .nav-shell nav.open { background: #fff; } }
