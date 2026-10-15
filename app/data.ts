@@ -1,3 +1,5 @@
+export const assetBase = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export const profile = {
   github: "https://github.com/mulaillallu2011",
   email: "mailto:mulail.lallu2011@gmail.com",
@@ -168,43 +170,43 @@ export type Photo = {
 // Supplied portraits and certificates; captions reflect each document's actual title.
 export const photos: Photo[] = [
   {
-    src: "/images/wro-regional-silver-certificate.webp",
+    src: `${assetBase}/images/wro-regional-silver-certificate.webp`,
     alt: "WRO Regional Championship 2026 second place certificate for Muhammed Mulail.P, KIN ThinkORB, Future Innovators Senior",
     caption: "WRO Regionals 2026 · 2nd place",
     category: "Certificate",
   },
   {
-    src: "/images/mulail-portrait.webp",
+    src: `${assetBase}/images/mulail-portrait.webp`,
     alt: "Mulail wearing glasses, standing outdoors among yellow flowers",
     caption: "Mulail · Outdoors",
     category: "Portrait",
   },
   {
-    src: "/images/mulail-outdoors.webp",
+    src: `${assetBase}/images/mulail-outdoors.webp`,
     alt: "Mulail standing beside tropical plants in a mustard-colored shirt",
     caption: "A moment outside the workshop",
     category: "Portrait",
   },
   {
-    src: "/images/mulail-casual.webp",
+    src: `${assetBase}/images/mulail-casual.webp`,
     alt: "Mulail taking a mirror portrait in a dark shirt",
     caption: "A little everyday life",
     category: "Portrait",
   },
   {
-    src: "/images/wro-national-silver-certificate.webp",
+    src: `${assetBase}/images/wro-national-silver-certificate.webp`,
     alt: "WRO India National Championship 2026 certificate awarding Muhammed Mulail.P of KIN ThinkORB a silver badge",
     caption: "WRO Nationals 2026 · Silver badge",
     category: "Certificate",
   },
   {
-    src: "/images/wro-virtual-gold-certificate.webp",
+    src: `${assetBase}/images/wro-virtual-gold-certificate.webp`,
     alt: "WRO India Virtual Championship Round 2026 certificate: Gold Badge, Future Innovators Senior, Muhammed Mulail.P, KIN ThinkORB",
     caption: "WRO Virtual Round 2026 · Gold badge",
     category: "Certificate",
   },
   {
-    src: "/images/speleo-brand.webp",
+    src: `${assetBase}/images/speleo-brand.webp`,
     alt: "Blue SB monogram and Speleo Bot project wordmark on a white background",
     caption: "Speleo Bot · Project identity",
     category: "Project artwork",

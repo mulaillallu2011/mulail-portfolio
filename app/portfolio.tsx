@@ -19,7 +19,7 @@ import {
   Plus,
   Bot,
 } from "lucide-react";
-import { achievements, photos, profile, projects, type Project } from "./data";
+import { achievements, photos, profile, projects, assetBase, type Project } from "./data";
 
 const nav = [
   ["home", "Home"],
@@ -499,7 +499,7 @@ export default function Portfolio() {
             <div className="portrait-orbit orbit-one" aria-hidden="true" /><div className="portrait-orbit orbit-two" aria-hidden="true" /><span className="portrait-spark spark-one" aria-hidden="true">+</span><span className="portrait-spark spark-two" aria-hidden="true">+</span>
             <div className="portrait-frame">
               <Image
-                src="/images/mulail-cutout.webp"
+                src={`${assetBase}/images/mulail-cutout.webp`}
                 alt="Mulail wearing glasses and a brown embroidered shirt"
                 fill
                 sizes="(max-width: 760px) 86vw, 440px"
@@ -714,7 +714,7 @@ export default function Portfolio() {
                     {p.id === "01" && (
                       <Image
                         className="brand-logo"
-                        src="/images/speleo-brand.webp"
+                        src={`${assetBase}/images/speleo-brand.webp`}
                         alt="Speleo Bot project logo"
                         width={210}
                         height={70}

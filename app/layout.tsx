@@ -7,7 +7,8 @@ import "@fontsource/outfit/600.css";
 import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(
-    "https://mulail-portfolio.mulail-lallu2011.chatgpt.site",
+    process.env.NEXT_PUBLIC_SITE_URL ||
+      "https://mulail-portfolio.mulail-lallu2011.chatgpt.site",
   ),
   title: "Mulail — Ideas into intelligent technology",
   description:
@@ -15,13 +16,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Mulail — Building ideas into intelligent technology",
     description: "Robotics. Code. Curiosity. A student innovator’s journey.",
-    images: [{ url: "/social-preview.png", width: 1200, height: 630 }],
+    images: [{ url: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/mulail-portrait.webp` }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Mulail — Robotics, code & curiosity",
-    images: ["/social-preview.png"],
+    images: [`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/mulail-portrait.webp`],
   },
   robots: { index: true, follow: true },
 };
