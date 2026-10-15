@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState, useId } from "react";
 import Image from "next/image";
+import ProjectGuide from "./project-guide";
 import { motion, useReducedMotion, useScroll, useSpring } from "motion/react";
 import {
   ArrowUpRight,
@@ -887,7 +888,7 @@ export default function Portfolio() {
             <br />
             I’d love to connect with fellow builders and curious minds.
           </p>
-          <a className="button primary" href={profile.email}>
+          <a className="button primary" href={profile.gmail} target="_blank" rel="noreferrer">
             Say hello <Mail size={18} />
           </a>
           <a className="email-link" href={profile.email}>
@@ -939,6 +940,7 @@ export default function Portfolio() {
               </p>
               <h2 id="dialog-title">{project.title}</h2>
               <p>{project.detail}</p>
+              <ProjectGuide key={project.id} id={project.id} />
               {project.award && (
                 <p className="project-award">
                   <Award size={18} />
@@ -998,3 +1000,4 @@ export default function Portfolio() {
     </>
   );
 }
+

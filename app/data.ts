@@ -2,7 +2,8 @@ export const assetBase = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export const profile = {
   github: "https://github.com/mulaillallu2011",
-  email: "mailto:mulail.lallu2011@gmail.com",
+  email: "mailto:mulail.lallu2011@gmail.com?subject=Hello%20Mulail%20%E2%80%94%20portfolio%20enquiry&body=Hi%20Mulail%2C%0A%0AI%20visited%20your%20portfolio%20and%20would%20like%20to%20connect%20about%3A%0A%0A%0AMy%20name%3A%0A%0AThanks!",
+  gmail: "https://mail.google.com/mail/?view=cm&fs=1&to=mulail.lallu2011%40gmail.com&su=Hello%20Mulail%20%E2%80%94%20portfolio%20enquiry&body=Hi%20Mulail%2C%0A%0AI%20visited%20your%20portfolio%20and%20would%20like%20to%20connect%20about%3A%0A%0A%0AMy%20name%3A%0A%0AThanks!",
   instagram: "https://www.instagram.com/__mhd__mulail.2.14/",
 };
 export type Project = {
@@ -212,3 +213,4 @@ export const photos: Photo[] = [
     category: "Project artwork",
   },
 ];
+

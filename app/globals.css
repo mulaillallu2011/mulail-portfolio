@@ -1893,3 +1893,16 @@ dialog::backdrop {
 @keyframes spark-drift { to { transform: translateY(-18px) rotate(35deg); } }
 @media(max-width:760px) { .portrait-visual { height: 460px; margin-top: 28px; }.portrait-orbit { width: 280px; height: 280px; }.orbit-two { width: 350px; height: 350px; }.certificate-grid { grid-template-columns: 1fr; }.hero-actions { gap: 12px; } }
 @media(prefers-reduced-motion:reduce), (update:slow) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+
+.project-guide { margin: 32px 0; display: grid; gap: 24px; }
+.project-guide section { padding-top: 22px; border-top: 1px solid var(--line); }
+.project-guide h3 { font-size: 21px; margin-bottom: 14px; }
+.project-guide ul { padding-left: 22px; color: var(--silver); line-height: 1.8; }
+.connection-table { overflow-x: auto; }
+.connection-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.connection-table th, .connection-table td { text-align: left; padding: 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.connection-table th { color: var(--cyan); }
+.guide-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.project-guide summary { cursor: pointer; padding: 16px 0; color: var(--cyan); }
+.project-guide pre { max-height: 400px; overflow: auto; padding: 18px; background: #050a14; border: 1px solid var(--line); border-radius: 10px; font-size: 12px; line-height: 1.6; }
