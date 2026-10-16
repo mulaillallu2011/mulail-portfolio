@@ -18,6 +18,6 @@ export default function ProjectGuide({ id }: { id: string }) {
       <a className="button secondary" download={`project-${id}.${["02","04","05"].includes(id) ? "ino" : "js"}`} href={`data:text/plain;charset=utf-8,${encodeURIComponent(guide.code)}`}>Download code</a></div>
       <p role="status" aria-live="polite">{copyStatus}</p>
       <details><summary>Read code ({guide.code.split("\n").length} lines)</summary><pre tabIndex={0}><code>{guide.code}</code></pre></details>
-    </> : <p>The complete source is not available in the recovered chats yet.</p>}</section>
+    </> : id === "03" ? <p>Application source is available through Files above. See the folder README for setup requirements and deployment status.</p> : <p>The complete source is not available in the recovered chats yet.</p>}</section>
   </div>;
 }

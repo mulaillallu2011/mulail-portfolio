@@ -1004,7 +1004,7 @@ export default function Portfolio() {
                       <button className="button secondary" disabled aria-describedby="preview-unavailable">Preview — unavailable</button>
                     )}
                   </div>
-                  {!project.previewUrl && <p id="preview-unavailable">Preview unavailable: only configuration files are available. The app source is incomplete, so no live app has been deployed.</p>}
+                  {!project.previewUrl && <p id="preview-unavailable">Preview unavailable: source files are available on GitHub, but a working live app deployment has not yet been verified.</p>}
                 </section>
               )}
               <p>{project.detail}</p>

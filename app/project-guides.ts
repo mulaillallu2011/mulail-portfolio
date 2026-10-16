@@ -118,7 +118,7 @@ export const projectGuides: Record<string, ProjectGuide> = {
         "Database tables"
       ]
     ],
-    "note": "Architecture summary from the portfolio chats. Complete source and migrations were not recovered. Server secrets must remain outside the frontend.",
+    "note": "Application source is available through Files. A separate Next.js server and configured Supabase database are required. Database migrations and a working live deployment have not yet been verified. Server secrets must remain outside the frontend.",
     "code": null
   },
   "04": {
