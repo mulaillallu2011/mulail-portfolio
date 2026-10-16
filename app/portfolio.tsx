@@ -366,19 +366,25 @@ export default function Portfolio() {
   const [search, setSearch] = useState("");
   const [theme, setTheme] = useState("dark");
   const [shareStatus, setShareStatus] = useState("");
+  const [project, setProject] = useState<Project | null>(null);
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem("mulail-theme");
-      if (saved === "light") { setTheme(saved); document.documentElement.dataset.theme = saved; }
-    } catch { /* Storage may be disabled. */ }
     const syncProject = () => {
       const id = new URL(window.location.href).searchParams.get("project");
       setProject(projects.find(p => p.id === id) ?? null);
       setShareStatus("");
     };
-    syncProject();
+    const frame = window.requestAnimationFrame(() => {
+      try {
+        const saved = localStorage.getItem("mulail-theme");
+        if (saved === "light") { setTheme(saved); document.documentElement.dataset.theme = saved; }
+      } catch { /* Storage may be disabled. */ }
+      syncProject();
+    });
     window.addEventListener("popstate", syncProject);
-    return () => window.removeEventListener("popstate", syncProject);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("popstate", syncProject);
+    };
   }, []);
   const toggleTheme = () => {
     const next = theme === "dark" ? "light" : "dark";
@@ -401,7 +407,6 @@ export default function Portfolio() {
     catch { setShareStatus("Copy the link from your browser’s address bar"); }
   };
   const [role, setRole] = useState(0);
-  const [project, setProject] = useState<Project | null>(null);
   const [photo, setPhoto] = useState<number | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const glow = useRef<HTMLDivElement>(null);
@@ -989,6 +994,19 @@ export default function Portfolio() {
                 {project.category} / {project.status}
               </p>
               <h2 id="dialog-title">{project.title}</h2>
+              {project.filesUrl && (
+                <section aria-label="Project files and preview">
+                  <div className="guide-actions">
+                    <a className="button primary" href={project.filesUrl} target="_blank" rel="noreferrer">Files <Github size={18} /></a>
+                    {project.previewUrl ? (
+                      <a className="button secondary" href={project.previewUrl} target="_blank" rel="noreferrer">Preview <ArrowUpRight size={18} /></a>
+                    ) : (
+                      <button className="button secondary" disabled aria-describedby="preview-unavailable">Preview — unavailable</button>
+                    )}
+                  </div>
+                  {!project.previewUrl && <p id="preview-unavailable">Preview unavailable: only configuration files are available. The app source is incomplete, so no live app has been deployed.</p>}
+                </section>
+              )}
               <p>{project.detail}</p>
               <div className="guide-actions"><button className="button secondary" onClick={shareProject}>Copy project link</button><span role="status">{shareStatus}</span></div>
               <ProjectGuide key={project.id} id={project.id} />

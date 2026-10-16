@@ -18,6 +18,8 @@ export type Project = {
   image?: string;
   imageAlt?: string;
   repo?: string;
+  filesUrl?: string;
+  previewUrl?: string;
   kind: "rover" | "sensor" | "software" | "led" | "buddy";
 };
 export const projects: Project[] = [
@@ -65,10 +67,11 @@ export const projects: Project[] = [
   },
   {
     id: "03",
-    title: "From workshop to workflow.",
+    title: "Startup Management",
     category: "Web",
     status: "In development",
     kind: "software",
+    filesUrl: "https://github.com/mulaillallu2011/mulail-portfolio/tree/main/startup-management",
     description:
       "Startup Management Software for robotics kits, electronics, workshops, students, and classes.",
     detail:

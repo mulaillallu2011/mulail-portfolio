@@ -1927,3 +1927,7 @@ dialog::backdrop {
 [data-theme=light] .project-guide pre { background: #eef3f9; color: #14263b; }
 [data-theme=light] .gallery-item > span { background: #ffffffed; color: #14263b; }
 @media (max-width: 760px) { .theme-toggle { margin-left: auto; } .project-search { gap: 10px; } .project-search label { width: 100%; } [data-theme=light] .nav-shell nav.open { background: #fff; } }
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
