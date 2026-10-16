@@ -19,7 +19,7 @@ export type Project = {
   imageAlt?: string;
   repo?: string;
   filesUrl?: string;
-  previewUrl?: string;
+  readmeUrl?: string;
   kind: "rover" | "sensor" | "software" | "led" | "buddy";
 };
 export const projects: Project[] = [
@@ -71,7 +71,8 @@ export const projects: Project[] = [
     category: "Web",
     status: "In development",
     kind: "software",
-    filesUrl: "https://github.com/mulaillallu2011/mulail-portfolio/tree/main/startup-management",
+    filesUrl: "https://github.com/mulaillallu2011/startup-management",
+    readmeUrl: "https://github.com/mulaillallu2011/startup-management#readme",
     description:
       "Startup Management Software for robotics kits, electronics, workshops, students, and classes.",
     detail:

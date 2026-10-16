@@ -995,16 +995,11 @@ export default function Portfolio() {
               </p>
               <h2 id="dialog-title">{project.title}</h2>
               {project.filesUrl && (
-                <section aria-label="Project files and preview">
+                <section aria-label="Project files and documentation">
                   <div className="guide-actions">
                     <a className="button primary" href={project.filesUrl} target="_blank" rel="noreferrer">Files <Github size={18} /></a>
-                    {project.previewUrl ? (
-                      <a className="button secondary" href={project.previewUrl} target="_blank" rel="noreferrer">Preview <ArrowUpRight size={18} /></a>
-                    ) : (
-                      <button className="button secondary" disabled aria-describedby="preview-unavailable">Preview — unavailable</button>
-                    )}
+                    {project.readmeUrl && <a className="button secondary" href={project.readmeUrl} target="_blank" rel="noreferrer">README & development steps <ArrowUpRight size={18} /></a>}
                   </div>
-                  {!project.previewUrl && <p id="preview-unavailable">Preview unavailable: source files are available on GitHub, but a working live app deployment has not yet been verified.</p>}
                 </section>
               )}
               <p>{project.detail}</p>
